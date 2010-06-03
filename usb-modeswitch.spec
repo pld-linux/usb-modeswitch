@@ -8,7 +8,7 @@ Source0:	http://www.draisberghof.de/usb_modeswitch/%{name}-%{version}.tar.bz2
 # Source0-md5:	071cb300d00938bfe20025c654303d92
 Patch0:		%{name}-makefile.patch
 URL:		http://www.draisberghof.de/usb_modeswitch/
-BuildRequires:	libusb-devel
+BuildRequires:	libusb-compat-devel
 Requires:	tcl
 Suggests:	usb-modeswitch-data
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
