@@ -1,11 +1,11 @@
 Summary:	Switching tool for controlling "flip flop" USB devices
 Name:		usb-modeswitch
-Version:	1.1.2
+Version:	1.1.3
 Release:	1
 License:	GPL v2
 Group:		Applications
 Source0:	http://www.draisberghof.de/usb_modeswitch/%{name}-%{version}.tar.bz2
-# Source0-md5:	071cb300d00938bfe20025c654303d92
+# Source0-md5:	571e6b81873231246693d18a9912f55d
 Patch0:		%{name}-makefile.patch
 URL:		http://www.draisberghof.de/usb_modeswitch/
 BuildRequires:	libusb-compat-devel
@@ -29,6 +29,7 @@ ZTE, Novatel.
 %{__make} \
 	CC="%{__cc}" \
 	CFLAGS="%{rpmcflags}" \
+	CPPFLAGS="%{rpmcppflags}" \
 	LDFLAGS="%{rpmldflags}"
 
 %install
@@ -39,17 +40,14 @@ install -d $RPM_BUILD_ROOT%{_sysconfdir}/usb_modeswitch.d
 	PREFIX=$RPM_BUILD_ROOT%{_prefix} \
 	DESTDIR=$RPM_BUILD_ROOT
 
-install usb_modeswitch.setup $RPM_BUILD_ROOT%{_sysconfdir}
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc ChangeLog README
+%doc ChangeLog README device_reference.txt
 %attr(755,root,root) %{_sbindir}/usb_modeswitch
 %attr(755,root,root) /lib/udev/usb_modeswitch
 %dir %{_sysconfdir}/usb_modeswitch.d
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/usb_modeswitch.conf
-%config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/usb_modeswitch.setup
 %{_mandir}/man1/usb_modeswitch.1*
