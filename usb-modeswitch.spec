@@ -1,11 +1,12 @@
+# TODO: Check if passing $(CPPFLAGS) to gcc is OK as done in patch0 ?
 Summary:	Switching tool for controlling "flip flop" USB devices
 Name:		usb-modeswitch
-Version:	1.1.3
-Release:	2
+Version:	1.1.4
+Release:	1
 License:	GPL v2
 Group:		Applications
 Source0:	http://www.draisberghof.de/usb_modeswitch/%{name}-%{version}.tar.bz2
-# Source0-md5:	571e6b81873231246693d18a9912f55d
+# Source0-md5:	a04db36bd0fc6fb303df7567f677b714
 Patch0:		%{name}-makefile.patch
 URL:		http://www.draisberghof.de/usb_modeswitch/
 BuildRequires:	libusb-compat-devel
@@ -23,7 +24,7 @@ ZTE, Novatel.
 
 %prep
 %setup -q
-%patch0 -p1
+# %%patch0 -p1
 
 %build
 %{__make} \
@@ -47,6 +48,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc ChangeLog README device_reference.txt
 %attr(755,root,root) %{_sbindir}/usb_modeswitch
+%attr(755,root,root) %{_sbindir}/usb_modeswitch_dispatcher
 %attr(755,root,root) /lib/udev/usb_modeswitch
 %dir %{_sysconfdir}/usb_modeswitch.d
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/usb_modeswitch.conf
