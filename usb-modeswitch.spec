@@ -1,12 +1,12 @@
 # TODO: Check if passing $(CPPFLAGS) to gcc is OK as done in patch0 ?
 Summary:	Switching tool for controlling "flip flop" USB devices
 Name:		usb-modeswitch
-Version:	1.1.4
+Version:	1.1.5
 Release:	1
 License:	GPL v2
 Group:		Applications
 Source0:	http://www.draisberghof.de/usb_modeswitch/%{name}-%{version}.tar.bz2
-# Source0-md5:	a04db36bd0fc6fb303df7567f677b714
+# Source0-md5:	23a44bc67b9ca4b6f3fdaf4bf3618df9
 Patch0:		%{name}-makefile.patch
 URL:		http://www.draisberghof.de/usb_modeswitch/
 BuildRequires:	libusb-compat-devel
