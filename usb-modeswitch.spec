@@ -1,16 +1,15 @@
-# TODO: Check if passing $(CPPFLAGS) to gcc is OK as done in patch0 ?
 Summary:	Switching tool for controlling "flip flop" USB devices
 Name:		usb-modeswitch
-Version:	1.1.5
+Version:	1.1.7
 Release:	1
 License:	GPL v2
 Group:		Applications
 Source0:	http://www.draisberghof.de/usb_modeswitch/%{name}-%{version}.tar.bz2
-# Source0-md5:	23a44bc67b9ca4b6f3fdaf4bf3618df9
+# Source0-md5:	b75e42b7b2d30e9d4cbd5c159f925247
 Patch0:		%{name}-makefile.patch
 URL:		http://www.draisberghof.de/usb_modeswitch/
 BuildRequires:	libusb-compat-devel
-Requires:	tcl
+Requires:	tcl >= 8.4
 Suggests:	usb-modeswitch-data
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -24,7 +23,7 @@ ZTE, Novatel.
 
 %prep
 %setup -q
-# %%patch0 -p1
+%patch0 -p1
 
 %build
 %{__make} \
@@ -35,7 +34,6 @@ ZTE, Novatel.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/usb_modeswitch.d
 
 %{__make} install \
 	PREFIX=$RPM_BUILD_ROOT%{_prefix} \
@@ -50,6 +48,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/usb_modeswitch
 %attr(755,root,root) %{_sbindir}/usb_modeswitch_dispatcher
 %attr(755,root,root) /lib/udev/usb_modeswitch
-%dir %{_sysconfdir}/usb_modeswitch.d
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/usb_modeswitch.conf
 %{_mandir}/man1/usb_modeswitch.1*
+%dir /var/lib/usb_modeswitch
