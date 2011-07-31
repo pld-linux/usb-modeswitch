@@ -1,4 +1,5 @@
 Summary:	Switching tool for controlling "flip flop" USB devices
+Summary(pl.UTF-8):	Narzędzie do sterowania przełączającymi się urządzeniami USB
 Name:		usb-modeswitch
 Version:	1.1.8
 Release:	1
@@ -8,18 +9,26 @@ Source0:	http://www.draisberghof.de/usb_modeswitch/%{name}-%{version}.tar.bz2
 # Source0-md5:	1aaaa45e0465843e4973d7778bfbafbb
 Patch0:		%{name}-makefile.patch
 URL:		http://www.draisberghof.de/usb_modeswitch/
-BuildRequires:	libusb-compat-devel
+BuildRequires:	libusb-compat-devel >= 0.1
 Requires:	tcl >= 8.4
 Suggests:	usb-modeswitch-data
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 USB Modeswitch brings up your datacard into operational mode. When
-plugged in they identify themselves as cdrom and present some
+plugged in they identify themselves as CD-ROM and present some
 non-Linux compatible installation files. This tool deactivates this
 cdrom-devices and enables the real communication device. It supports
 most devices built and sold by Huawei, T-Mobile, Vodafone, Option,
 ZTE, Novatel.
+
+%description -l pl.UTF-8
+USB Modeswitch potrafi przełączyć pewne urządzenia komunikacyjne w
+tryb operacyjny. Takie urządzenia po podłączeniu identyfikują się jako
+CD-ROM i oferują jedynie niezgodne z Linuksem pliki instalacyjne. To
+narzędzie wyłącza emulację CD i włącza prawdziwe urządzenie
+komunikacjne. Obsługuje większość urządzeń wytworzonych i oferowanych
+przez firmy Huawei, T-Mobile, Vodafone, Option, ZTE, Novatel.
 
 %prep
 %setup -q

@@ -1,15 +1,15 @@
---- usb-modeswitch-1.1.7/Makefile.makefile	2011-02-23 00:07:38.000000000 +0100
-+++ usb-modeswitch-1.1.7/Makefile	2011-04-28 12:08:16.000000000 +0200
-@@ -2,6 +2,8 @@ PROG        = usb_modeswitch
- VERS        = 1.1.7
+--- usb-modeswitch-1.1.8/Makefile.orig	2011-06-15 00:01:41.000000000 +0200
++++ usb-modeswitch-1.1.8/Makefile	2011-07-31 20:32:17.556662528 +0200
+@@ -2,6 +2,8 @@
+ VERS        = 1.1.8
  CC          = gcc
  CFLAGS      += -Wall
-+CPPFLAGS    = $(NULL)
-+LDFLAGS     = $(NULL)
++CPPFLAGS    =
++LDFLAGS     =
  LIBS        = -l usb
  RM          = /bin/rm -f
  OBJS        = usb_modeswitch.c
-@@ -16,7 +18,7 @@ MANDIR      = $(PREFIX)/share/man/man1
+@@ -16,13 +18,13 @@
  all:        $(PROG)
  
  $(PROG): $(OBJS)
@@ -18,3 +18,10 @@
  
  clean:
  	$(RM) usb_modeswitch
+ 
+ install: all
+-	install -D -s --mode=755 usb_modeswitch $(SBINDIR)/usb_modeswitch
++	install -D --mode=755 usb_modeswitch $(SBINDIR)/usb_modeswitch
+ 	install -D --mode=755 usb_modeswitch.tcl $(SBINDIR)/usb_modeswitch_dispatcher
+ 	install -D --mode=755 usb_modeswitch.sh $(UDEVDIR)/usb_modeswitch
+ 	install -D --mode=644 usb_modeswitch.conf $(ETCDIR)/usb_modeswitch.conf
