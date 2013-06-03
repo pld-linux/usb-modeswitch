@@ -2,13 +2,13 @@
 +++ usb-modeswitch-1.2.4/Makefile	2012-09-01 22:02:56.823006830 +0200
 @@ -2,6 +2,8 @@
  VERS        = 1.2.4
- CC          = gcc
+ CC          ?= gcc
  CFLAGS      += -Wall
 +CPPFLAGS    =
 +LDFLAGS     =
+ #LIBS        = libusb.a
  LIBS        = -l usb
  RM          = /bin/rm -f
- OBJS        = usb_modeswitch.c
 @@ -21,7 +23,7 @@
  static: $(PROG) dispatcher-static
  
@@ -18,12 +18,3 @@
  
  dispatcher-static: dispatcher.c usb_modeswitch.tcl
  	./make_static_dispatcher.sh
-@@ -46,7 +48,7 @@
- 	cd jim && $(MAKE) distclean
- 
- install-common: all
--	install -D -s --mode=755 usb_modeswitch $(SBINDIR)/usb_modeswitch
-+	install -D --mode=755 usb_modeswitch $(SBINDIR)/usb_modeswitch
- 	install -D --mode=755 usb_modeswitch.sh $(UDEVDIR)/usb_modeswitch
- 	install -D --mode=644 usb_modeswitch.conf $(ETCDIR)/usb_modeswitch.conf
- 	install -D --mode=644 usb_modeswitch.1 $(MANDIR)/usb_modeswitch.1
