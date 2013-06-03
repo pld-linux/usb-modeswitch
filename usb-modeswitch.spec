@@ -43,6 +43,7 @@ przez firmy Huawei, T-Mobile, Vodafone, Option, ZTE, Novatel.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT/etc/usb_modeswitch.d
 
 %{__make} install \
 	PREFIX=$RPM_BUILD_ROOT%{_prefix} \
@@ -59,4 +60,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) /lib/udev/usb_modeswitch
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/usb_modeswitch.conf
 %{_mandir}/man1/usb_modeswitch.1*
+%dir /etc/usb_modeswitch.d
 %dir /var/lib/usb_modeswitch
