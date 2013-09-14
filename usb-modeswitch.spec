@@ -1,15 +1,16 @@
 Summary:	Switching tool for controlling "flip flop" USB devices
 Summary(pl.UTF-8):	Narzędzie do sterowania przełączającymi się urządzeniami USB
 Name:		usb-modeswitch
-Version:	1.2.7
+Version:	2.0.1
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://www.draisberghof.de/usb_modeswitch/%{name}-%{version}.tar.bz2
-# Source0-md5:	18d889d72195534ae9133a8181cad42b
+# Source0-md5:	e48d4419d0574d342bb183f7465556d0
 Patch0:		%{name}-makefile.patch
 URL:		http://www.draisberghof.de/usb_modeswitch/
-BuildRequires:	libusb-compat-devel >= 0.1
+BuildRequires:	libusb-devel >= 1.0
+BuildRequires:	pkgconfig
 Requires:	tcl >= 8.4
 Suggests:	usb-modeswitch-data
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -46,8 +47,9 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/etc/usb_modeswitch.d
 
 %{__make} install \
-	PREFIX=$RPM_BUILD_ROOT%{_prefix} \
 	DESTDIR=$RPM_BUILD_ROOT
+
+install -D usb_modeswitch@.service $RPM_BUILD_ROOT%{systemdunitdir}/usb_modeswitch@.service
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -58,7 +60,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_sbindir}/usb_modeswitch
 %attr(755,root,root) %{_sbindir}/usb_modeswitch_dispatcher
 %attr(755,root,root) /lib/udev/usb_modeswitch
+%{systemdunitdir}/usb_modeswitch@.service
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/usb_modeswitch.conf
 %{_mandir}/man1/usb_modeswitch.1*
+%{_mandir}/man1/usb_modeswitch_dispatcher.1*
 %dir /etc/usb_modeswitch.d
 %dir /var/lib/usb_modeswitch
