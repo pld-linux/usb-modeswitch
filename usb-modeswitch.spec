@@ -1,12 +1,12 @@
 Summary:	Switching tool for controlling "flip flop" USB devices
 Summary(pl.UTF-8):	Narzędzie do sterowania przełączającymi się urządzeniami USB
 Name:		usb-modeswitch
-Version:	2.2.5
+Version:	2.2.6
 Release:	1
 License:	GPL v2
 Group:		Applications/System
 Source0:	http://www.draisberghof.de/usb_modeswitch/%{name}-%{version}.tar.bz2
-# Source0-md5:	ef86a19f0b3c4f64896d78a2ffb748e9
+# Source0-md5:	ea050e3b44a2b7aa805619042f5448df
 Patch0:		%{name}-makefile.patch
 URL:		http://www.draisberghof.de/usb_modeswitch/
 BuildRequires:	libusb-devel >= 1.0
