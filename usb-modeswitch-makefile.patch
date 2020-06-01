@@ -1,9 +1,9 @@
 --- usb-modeswitch-2.0.1/Makefile.orig	2013-09-03 19:22:05.000000000 +0200
 +++ usb-modeswitch-2.0.1/Makefile	2013-09-14 07:06:41.048926415 +0200
 @@ -2,6 +2,8 @@
- VERS        = 2.0.1
+ VERS        = 2.6.0
  CC          ?= gcc
- CFLAGS      += -Wall
+ CFLAGS      += -Wall -Wno-deprecated-declarations
 +CPPFLAGS    =
 +LDFLAGS     =
  LIBS        = `pkg-config --libs --cflags libusb-1.0`
