@@ -1,6 +1,7 @@
---- usb-modeswitch-2.0.1/Makefile.orig	2013-09-03 19:22:05.000000000 +0200
-+++ usb-modeswitch-2.0.1/Makefile	2013-09-14 07:06:41.048926415 +0200
-@@ -2,6 +2,8 @@
+diff -urNp -x '*.orig' usb-modeswitch-2.6.0.org/Makefile usb-modeswitch-2.6.0/Makefile
+--- usb-modeswitch-2.6.0.org/Makefile	2019-11-11 21:45:13.000000000 +0100
++++ usb-modeswitch-2.6.0/Makefile	2022-02-15 16:31:14.356333430 +0100
+@@ -2,6 +2,8 @@ PROG        = usb_modeswitch
  VERS        = 2.6.0
  CC          ?= gcc
  CFLAGS      += -Wall -Wno-deprecated-declarations
@@ -9,12 +10,12 @@
  LIBS        = `pkg-config --libs --cflags libusb-1.0`
  RM          = /bin/rm -f
  OBJS        = usb_modeswitch.c
-@@ -36,7 +38,7 @@
- static: $(PROG) dispatcher-static
+@@ -26,7 +28,7 @@ all-with-dynlink-dispatcher: $(PROG) dis
+ all-with-statlink-dispatcher: $(PROG) dispatcher-statlink
  
  $(PROG): $(OBJS) usb_modeswitch.h
 -	$(CC) -o $(PROG) $(OBJS) $(CFLAGS) $(LIBS) $(LDFLAGS)
 +	$(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $(PROG) $(OBJS) $(LIBS)
  
- jim/libjim.so:
- 	cd jim && CFLAGS="$(CFLAGS)" CC="$(CC)" ./configure $(JIM_CONFIGURE_OPTS) --shared
+ dispatcher-script: usb_modeswitch_dispatcher.tcl
+ 	DISPATCH=dispatcher-script
