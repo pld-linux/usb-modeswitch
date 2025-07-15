@@ -33,7 +33,7 @@ przez firmy Huawei, T-Mobile, Vodafone, Option, ZTE, Novatel.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__make} \
